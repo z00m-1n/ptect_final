@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "baseUrl": ".",
+    "paths": {
+
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+    },
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "declaration": true,
+  }
+}

@@ -24,7 +24,7 @@ const Login: React.FunctionComponent = ({navigation}:any) => {
       case "hasValue":
           if (loginLoadable.contents.status == "success")
           {
-            navigation.push("Home");
+            navigation.push("InitialLogin");
           }
       case "loading":
 

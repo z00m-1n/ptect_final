@@ -4,6 +4,7 @@ import GeneralStatusBar from "../../components/general_status_bar";
 import StatusBarView from "../../components/status_bar_view";
 import StatusBarScreen from "../../components/status_bar_screen";
 import Constant from "../../global/constant";
+import { Screens } from "../../navigation/navigator";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { inputStyle } from "../../style/input";
@@ -16,7 +17,7 @@ import { Divider } from "@rneui/themed";
 import testImage from "../../../assets/images/test.png";
 import GeneralDivider from "../../components/general_divider";
 
-const Notification: React.FunctionComponent = () => {
+const Notification: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -41,12 +42,12 @@ const Notification: React.FunctionComponent = () => {
             </Text>
           </View>
           <View style={{  alignSelf: 'stretch', marginHorizontal:40, marginTop:40 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0,  }]}>
+            <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Home')}>
               <Text style={styles.btnText}>"범죄상황감지" 소리 출력</Text>
             </Pressable>
           </View>
           <View style={{  alignSelf: 'stretch', marginHorizontal:40, marginTop:20 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0,  }]}>
+            <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Home')}>
               <Text style={styles.btnText}>"SOS" 전광판 출력</Text>
             </Pressable>
           </View>

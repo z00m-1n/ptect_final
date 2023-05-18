@@ -4,6 +4,7 @@ import GeneralStatusBar from "../../components/general_status_bar";
 import StatusBarView from "../../components/status_bar_view";
 import StatusBarScreen from "../../components/status_bar_screen";
 import Constant from "../../global/constant";
+import { Screens } from "../../navigation/navigator";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { inputStyle } from "../../style/input";
@@ -14,11 +15,12 @@ import constant from "../../global/constant";
 import HistoryList from "../../components/history_list";
 
 
-const Historys: React.FunctionComponent = () => {
+const Historys: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
-  const historyList = [{title:"[자동신고] GS25 신촌기차역점",content1:"2022.02.06.",content2:"202202061222"},
+  const historyList = [
+    {title:"[자동신고] GS25 신촌기차역점",content1:"2022.02.06.",content2:"202202061222"} ,
     {title:"[자동신고] GS25 신촌기차역점",content1:"2022.02.06.",content2:"202202061222"},
     {title:"[자동신고] GS25 신촌기차역점",content1:"2022.02.06.",content2:"202202061222"},
     {title:"[자동신고] GS25 신촌기차역점",content1:"2022.02.06.",content2:"202202061222"},
@@ -30,7 +32,7 @@ const Historys: React.FunctionComponent = () => {
       <StatusBarView />
       <BackArrowTitle title={'신고 내역 조회'}></BackArrowTitle>
       <View style={{ flex:1, margin : 20, padding : 10, backgroundColor : '#E6E6E6', borderRadius : 10}}>
-      <HistoryList items={historyList}/>
+      <HistoryList items={historyList} />
       </View>
 
     </SafeAreaView>

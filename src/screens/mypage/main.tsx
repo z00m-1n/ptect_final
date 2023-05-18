@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 import StatusBarView from "../../components/status_bar_view";
+import { Screens } from "../../navigation/navigator";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -22,7 +23,8 @@ import GeneralDivider from "../../components/general_divider";
 import UserSvg from "../../svg/user_svg";
 import RegisterStore from "@images/registore.png";
 import Store from "@images/store.png"
-const MyPageMain: React.FunctionComponent = () => {
+
+const MyPageMain: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -68,7 +70,7 @@ const MyPageMain: React.FunctionComponent = () => {
           </View>
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 20 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 20 }]} onPress={()=> navigation.push('MyPageInfo')}>
               <Text style={styles.btnText}>정보 변경</Text>
             </Pressable>
           </View>
@@ -81,7 +83,7 @@ const MyPageMain: React.FunctionComponent = () => {
           </View>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 1, alignItems: "flex-end" }}>
-              <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]}>
+              <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('SelectStore')}>
                 <Image style={{ width: 60,
                   height: 60, resizeMode: 'stretch',}}
                   source={RegisterStore}
@@ -90,7 +92,7 @@ const MyPageMain: React.FunctionComponent = () => {
               </Pressable>
             </View>
             <View style={{ flex: 1, alignItems: "flex-start" }}>
-              <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]}>
+              <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('MyEmployeeView')}>
                 <Image style={{ width: 60,
                   height: 60, resizeMode: 'stretch',}}
                   source={Store}

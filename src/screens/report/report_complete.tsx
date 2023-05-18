@@ -17,6 +17,7 @@ import StatusBarScreen from "../../components/status_bar_screen";
 import Constant from "../../global/constant";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
+import { Screens } from "../../navigation/navigator";
 import { inputStyle } from "../../style/input";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import BackArrowTitle from "../../components/backarrow_title";
@@ -26,7 +27,7 @@ import { Divider } from "@rneui/themed";
 
 import testImage from "../../../assets/images/test.png";
 
-const ReportComplete: React.FunctionComponent = () => {
+const ReportComplete: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +44,7 @@ const ReportComplete: React.FunctionComponent = () => {
           <Text style={styles.mainText}>신고 접수가 완료되었습니다.
           </Text>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 20 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 20 }]} onPress={()=> navigation.push('Home')}>
               <Text style={styles.btnText}>확인</Text>
             </Pressable>
 

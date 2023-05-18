@@ -17,6 +17,7 @@ import StatusBarScreen from "../../components/status_bar_screen";
 import Constant from "../../global/constant";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
+import { Screens } from "../../navigation/navigator";
 import { inputStyle } from "../../style/input";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import BackArrowTitle from "../../components/backarrow_title";
@@ -26,7 +27,7 @@ import { Divider } from "@rneui/themed";
 
 import testImage from "../../../assets/images/test.png";
 
-const Report: React.FunctionComponent = () => {
+const Report: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -63,10 +64,10 @@ const Report: React.FunctionComponent = () => {
 
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 40 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={()=> navigation.push('ReportComplete')}>
               <Text style={styles.btnText}>신고 접수</Text>
             </Pressable>
-            <Pressable style={[purpleBtn, { marginTop: 10 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 10 }]} onPress={()=> navigation.push('Home')}>
               <Text style={styles.btnText}>신고 취소</Text>
             </Pressable>
           </View>

@@ -4,13 +4,14 @@ import GeneralStatusBar from "../../components/general_status_bar";
 import StatusBarView from "../../components/status_bar_view";
 import StatusBarScreen from "../../components/status_bar_screen";
 import Constant from "../../global/constant";
+import { Screens } from "../../navigation/navigator";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { inputStyle } from "../../style/input";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 
-const InitialLogin: React.FunctionComponent = () => {
+const InitialLogin: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -27,12 +28,12 @@ const InitialLogin: React.FunctionComponent = () => {
             <Text style={styles.mainText}>[점주]와 [근로자] 중</Text>
             <Text style={styles.mainText}>무엇인지 선택해주세요.</Text>
             <View style={{ marginTop: 20 }}>
-              <Pressable style={[purpleBtn, { marginTop: 0 }]}>
+              <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={()=> navigation.push('Home')}>
                 <Text style={styles.btnText}>점주</Text>
               </Pressable>
             </View>
             <View style={{ marginTop: 10 }}>
-              <Pressable style={[purpleBtn, { marginTop: 0 }]}>
+              <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={()=> navigation.push('Home')}>
                 <Text style={styles.btnText}>근로자</Text>
               </Pressable>
             </View>

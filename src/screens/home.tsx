@@ -34,12 +34,12 @@ const Home: React.FunctionComponent = ({navigation}:any) => {
 
           <View style={{ flex: 5, alignItems: "center" }}>
             <View style={{ marginTop: 20 ,alignSelf: 'stretch', paddingHorizontal : Constant.paddingHorizontal }}>
-              <Pressable style={[purpleBtn, { marginTop: 0  }]}>
+              <Pressable style={[purpleBtn, { marginTop: 0  }]} onPress={()=> navigation.push('MyPageMain')}>
                 <Text style={styles.btnText}>마이페이지</Text>
               </Pressable>
             </View>
             <View style={{ marginTop: 10, alignSelf: 'stretch', paddingHorizontal : Constant.paddingHorizontal }}>
-              <Pressable style={[purpleBtn, { marginTop: 0,  }]}>
+              <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Report')}>
                 <Text style={styles.btnText}>긴급 수동 신고</Text>
               </Pressable>
             </View>
@@ -50,7 +50,7 @@ const Home: React.FunctionComponent = ({navigation}:any) => {
                 </Pressable>
               </View>
               <View style={{ flex: 5, alignSelf: 'stretch', paddingLeft : 5  }}>
-                <Pressable style={[purpleBtn, { marginTop: 0,  }]}>
+                <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Notification')}>
                   <Text style={styles.btnText}>현장 알림</Text>
                 </Pressable>
               </View>

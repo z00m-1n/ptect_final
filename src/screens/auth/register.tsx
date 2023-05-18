@@ -4,6 +4,7 @@ import GeneralStatusBar from "../../components/general_status_bar";
 import StatusBarView from "../../components/status_bar_view";
 import StatusBarScreen from "../../components/status_bar_screen";
 import Constant from "../../global/constant";
+import { Screens } from "../../navigation/navigator";
 import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { inputStyle } from "../../style/input";
@@ -13,7 +14,7 @@ export type ParentCompProps = {
   children: React.ReactNode;
 }
 
-const Register: React.FunctionComponent = () => {
+const Register: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState('');
   const [name, setName] = useState('');
@@ -76,7 +77,7 @@ const Register: React.FunctionComponent = () => {
         <View style={{ paddingHorizontal: Constant.paddingHorizontal, alignItems: "center" }}>
 
           <View style={{ marginTop: 50 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={()=> navigation.push('AuthHome')}>
               <Text style={styles.btnText}>회원가입</Text>
             </Pressable>
           </View>

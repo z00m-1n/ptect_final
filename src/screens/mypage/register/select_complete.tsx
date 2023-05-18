@@ -16,10 +16,11 @@ import StatusBarView from "../../../components/status_bar_view";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import BackArrowTitle from "../../../components/backarrow_title";
 import constant from "../../../global/constant";
+import { Screens } from "../../../navigation/navigator";
 import { generalStyle } from "../../../style/general";
 import { btnStyle } from "../../../style/button";
 
-const SelectComplete: React.FunctionComponent = () => {
+const SelectComplete: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +38,7 @@ const SelectComplete: React.FunctionComponent = () => {
           </Text>
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 40 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={()=> navigation.push('MyPageMain')}>
               <Text style={styles.btnText}>확인</Text>
             </Pressable>
           </View>

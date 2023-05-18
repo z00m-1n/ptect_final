@@ -18,6 +18,7 @@ import Store from "@images/store.png";
 import StatusBarView from "../../../components/status_bar_view";
 import BackArrowTitle from "../../../components/backarrow_title";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Screens } from "../../../navigation/navigator";
 import constant from "../../../global/constant";
 import UserSvg from "../../../svg/user_svg";
 import { generalStyle } from "../../../style/general";
@@ -26,7 +27,7 @@ import { btnStyle } from "../../../style/button";
 import Constant from "../../../global/constant";
 import { inputStyle } from "../../../style/input";
 
-const MyPageInfo: React.FunctionComponent = () => {
+const MyPageInfo: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -89,7 +90,7 @@ const MyPageInfo: React.FunctionComponent = () => {
             </View>
           </View>
           <View style={{ marginTop: 50 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0 }]}>
+            <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={()=> navigation.push('MyPageMain')}>
               <Text style={styles.btnText}>정보 수정</Text>
             </Pressable>
           </View>

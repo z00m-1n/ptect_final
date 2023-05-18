@@ -31,8 +31,11 @@ const Historys: React.FunctionComponent = ({navigation}:any) => {
     <SafeAreaView style={styles.container}>
       <StatusBarView />
       <BackArrowTitle title={'신고 내역 조회'}></BackArrowTitle>
-      <View style={{ flex:1, margin : 20, padding : 10, backgroundColor : '#E6E6E6', borderRadius : 10}}>
-      <HistoryList items={historyList} />
+      <View style={{ flex:1, margin : 20, padding : 10, backgroundColor : '#E6E6E6', borderRadius : 10}} >
+        <Pressable onPress={()=> navigation.push('HistoryDetail')}>
+          <HistoryList items={historyList} />
+        </Pressable>
+      
       </View>
 
     </SafeAreaView>

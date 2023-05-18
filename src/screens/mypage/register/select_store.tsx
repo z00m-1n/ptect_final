@@ -13,6 +13,7 @@ import {
 import StatusBarView from "../../../components/status_bar_view";
 import BackArrowTitle from "../../../components/backarrow_title";
 import constant from "../../../global/constant";
+import { Screens } from "../../../navigation/navigator";
 import { generalStyle } from "../../../style/general";
 import { inputStyle } from "../../../style/input";
 import { btnStyle } from "../../../style/button";
@@ -22,7 +23,7 @@ import GeneralDivider from "../../../components/general_divider";
 
 import Pay1 from "@images/pay1.png";
 import Pay2 from "@images/pay2.png";
-const SelectStore: React.FunctionComponent = () => {
+const SelectStore: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
@@ -57,7 +58,7 @@ const SelectStore: React.FunctionComponent = () => {
         </View>
         <View style={{ flexDirection: "row", marginTop:30 }}>
           <View style={{ flex: 1, alignItems: "flex-end" }}>
-            <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]}>
+            <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('SelectComplete')}>
               <Image style={{ width: 60,
                 height: 60, resizeMode: 'stretch',}}
                      source={Pay1}
@@ -66,7 +67,7 @@ const SelectStore: React.FunctionComponent = () => {
             </Pressable>
           </View>
           <View style={{ flex: 1, alignItems: "flex-start" }}>
-            <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]}>
+            <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('SelectComplete')}>
               <Image style={{ width: 60,
                 height: 60, resizeMode: 'stretch',}}
                      source={Pay2}

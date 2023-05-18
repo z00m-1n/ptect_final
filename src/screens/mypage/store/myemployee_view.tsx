@@ -13,6 +13,7 @@ import {
 import StatusBarView from "../../../components/status_bar_view";
 import BackArrowTitle from "../../../components/backarrow_title";
 import FlatList = Animated.FlatList;
+import { Screens } from "../../../navigation/navigator";
 import { generalStyle } from "../../../style/general";
 import { inputStyle } from "../../../style/input";
 import { btnStyle } from "../../../style/button";
@@ -24,7 +25,7 @@ import GeneralDivider from "../../../components/general_divider";
 import UserSvg from "../../../svg/user_svg";
 
 
-const MyEmployeeView: React.FunctionComponent = () => {
+const MyEmployeeView: React.FunctionComponent = ({ navigation }: any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -115,7 +116,7 @@ const MyEmployeeView: React.FunctionComponent = () => {
           </View>
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <Pressable style={[smallPurpleBtn, { marginTop: 40 }]}>
+          <Pressable style={[smallPurpleBtn, { marginTop: 40 }]} onPress={()=> navigation.push('MyPageMain')} >
             <Text style={styles.btnText}>확인</Text>
           </Pressable>
         </View>

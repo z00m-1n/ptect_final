@@ -27,26 +27,11 @@ const AuthHome: React.FunctionComponent = ({ navigation }: any) => {
 
     // Display a notification
     await notifee.displayNotification({
-      title: 'Notification Title',
-      body: 'Main body content of the notification',
+      title: '🚨 강력범죄탐지 🚨',
+      body: '귀하의 점포에 강력범죄가 탐지되었습니다.',
       android: {
         channelId,
         smallIcon: 'ic_launcher', // optional, defaults to 'ic_launcher'.
-        // pressAction is needed if you want the notification to open the app when pressed
-        actions: [
-          {
-            title: 'test1',
-            pressAction: {
-              id: 't1',
-            },
-          },
-          {
-            title: 'test2',
-            pressAction: {
-              id: 't2',
-            },
-          },
-        ],
       },
     });
   }

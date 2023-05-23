@@ -1,5 +1,5 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator  } from '@react-navigation/native-stack';
+import { NavigationContainer, ParamListBase, useNavigation, useNavigationContainerRef } from "@react-navigation/native";
+import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
 import AuthHome from "../screens/auth/auth_home";
 import Register from "../screens/auth/register";
@@ -12,9 +12,9 @@ import Report from "../screens/report/report";
 import ReportComplete from "../screens/report/report_complete";
 import Notification from "../screens/notification/notification";
 import MyPageMain from "../screens/mypage/main";
-import SelectStore from "../screens/mypage/register/select_store";
-import SelectWork from "../screens/mypage/register/select_work";
-import SelectComplete from "../screens/mypage/register/select_complete";
+import SelectStore from "../screens/auth/select_store";
+import SelectWork from "../screens/auth/select_work";
+import SelectComplete from "../screens/auth/select_complete";
 import MyStoreList from "../screens/mypage/store/mystore_list";
 import Historys from "../screens/history/historys";
 import MyStoreView from "../screens/mypage/store/mystore_view";
@@ -22,9 +22,25 @@ import MyEmployeeView from "../screens/mypage/store/myemployee_view";
 import StoreList from "../screens/mypage/store/store_list";
 import StoreView from "../screens/mypage/store/store_view";
 import MyPageInfo from "../screens/mypage/info/info";
+import SelectOnPush from "../screens/push/select_on_push";
+import messaging from "@react-native-firebase/messaging";
+import RegisterStoreList from "../screens/auth/register_store_list";
+import RegisterStore from "../screens/auth/register_store";
 
 
+
+export type RootStackParamList = {
+
+  SelectComplete : {isStore:boolean},
+  SelectOnPush : {title:string,body:string},
+  Home:undefined
+  RegisterStore : {onClick: (name:string,address:string)=>void}
+  SelectStore : {storeName:string}
+  SelectWork : {storeName:string}
+
+};
 const Stack = createNativeStackNavigator();
+const ParamStack = createNativeStackNavigator<RootStackParamList>();
 export enum Screens {
   AuthHome = 'AuthHome',
   Register = 'Register',
@@ -37,7 +53,7 @@ export enum Screens {
   ReportComplete = 'ReportComplete',
   Notification = 'Notification',
   MyPageMain = 'MyPageMain',
-  RegisterStore  = 'RegisterStore',
+  RegisterStoreList  = 'RegisterStoreList',
   SelectStore = 'SelectStore',
   SelectWork = 'SelectWork',
   SelectComplete = 'SelectComplete',
@@ -46,14 +62,22 @@ export enum Screens {
   MyEmployeeView = 'MyEmployeeView',
   StoreList = 'StoreList',
   StoreView = 'StoreView',
-  MyPageInfo = 'MyPageInfo'
+  MyPageInfo = 'MyPageInfo',
+  SelectOnPush = 'SelectOnPush',
+  RegisterStore = 'RegisterStore'
 
 }
+
+
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 const Navigator: React.FunctionComponent = () => {
+
+  const navigationRef = useNavigationContainerRef();
 
 
   return (
-    <NavigationContainer >
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName={'AuthHome'} >
         <Stack.Screen options={{
           headerShown: false,
@@ -88,15 +112,14 @@ const Navigator: React.FunctionComponent = () => {
         <Stack.Screen options={{
           headerShown: false,
         }} name={Screens.MyPageMain} component={MyPageMain} />
-        <Stack.Screen options={{
+        
+        <ParamStack.Screen options={{
           headerShown: false,
         }} name={Screens.SelectStore} component={SelectStore} />
-        <Stack.Screen options={{
+        
+        <ParamStack.Screen options={{
           headerShown: false,
         }} name={Screens.SelectWork} component={SelectWork} />
-        <Stack.Screen options={{
-          headerShown: false,
-        }} name={Screens.SelectComplete} component={SelectComplete} />
         <Stack.Screen options={{
           headerShown: false,
         }} name={Screens.MyStoreList} component={MyStoreList} />
@@ -115,6 +138,20 @@ const Navigator: React.FunctionComponent = () => {
         <Stack.Screen options={{
           headerShown: false,
         }} name={Screens.MyPageInfo} component={MyPageInfo} />
+
+        <Stack.Screen options={{
+          headerShown: false,
+        }} name={Screens.RegisterStoreList} component={RegisterStoreList} />
+
+        <ParamStack.Screen options={{
+          headerShown: false,
+        }} name={Screens.RegisterStore} component={RegisterStore} />
+        <ParamStack.Screen options={{
+          headerShown: false,
+        }} name={Screens.SelectOnPush} component={SelectOnPush} initialParams={{title:"", body:""}}/>
+        <ParamStack.Screen options={{
+          headerShown: false,
+        }} name={Screens.SelectComplete} component={SelectComplete} initialParams={{isStore:false}}/>
 
       </Stack.Navigator>
 

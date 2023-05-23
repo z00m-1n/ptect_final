@@ -6,19 +6,22 @@ import {
   StatusBarProps,
   StyleSheet, Text,
   FlatList,
-  View
+  View, Pressable
 } from "react-native";
 import { Divider } from "@rneui/themed";
 
-export type ListItems = {
+type ListItems = {
   title: string;
   content: string;
+  onClick:(name:string, address:string)=>void;
 };
 
-export type ListItem = {
-  items : ListItems[]
+export interface ListItem  {
+  items : ListItems[];
 };
-
+export interface ListClick  {
+  onClick : ()=>void
+};
 
 const GeneralList: React.FunctionComponent<ListItem> = ({...props}) => {
   return (
@@ -27,6 +30,7 @@ const GeneralList: React.FunctionComponent<ListItem> = ({...props}) => {
       props.items
     } renderItem={
       ({item})=>
+        <Pressable onPress={()=>{item.onClick(item.title, item.content);}}>
         <View style={{flexDirection:'column', borderStyle : 'solid', borderWidth : 3, borderColor : '#D2D2D2', backgroundColor:'#FFFFFF'
           , borderRadius : 10, padding : 7, marginBottom : 5}}>
           <View style={{flex:1}}><Text style={{fontSize : 20, fontWeight : 'bold',color :'#000000'}} >{item.title}</Text></View>
@@ -34,6 +38,7 @@ const GeneralList: React.FunctionComponent<ListItem> = ({...props}) => {
             <Text style={{fontSize:13, color:'#000000'}}>{item.content}</Text>
           </View>
         </View>
+        </Pressable>
     }>
     </FlatList>
 

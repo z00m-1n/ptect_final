@@ -12,15 +12,17 @@ import {
   View
 } from "react-native";
 
-import StatusBarView from "../../../components/status_bar_view";
+import StatusBarView from "../../components/status_bar_view";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import BackArrowTitle from "../../../components/backarrow_title";
-import constant from "../../../global/constant";
-import { Screens } from "../../../navigation/navigator";
-import { generalStyle } from "../../../style/general";
-import { btnStyle } from "../../../style/button";
+import BackArrowTitle from "../../components/backarrow_title";
+import constant from "../../global/constant";
+import { generalStyle } from "../../style/general";
+import { btnStyle } from "../../style/button";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/navigator";
 
-const SelectComplete: React.FunctionComponent = ({navigation}:any) => {
+type SelectWorkProps = NativeStackScreenProps<RootStackParamList, "SelectWork">;
+const SelectWork = ({route,navigation}:SelectWorkProps) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -34,12 +36,22 @@ const SelectComplete: React.FunctionComponent = ({navigation}:any) => {
         <View style={{ padding: constant.viewPadding, flex :1,  justifyContent: "center", alignItems: "center",
         }}>
 
-          <Text style={styles.mainText}>근무 요청이 완료되었습니다.
+          <Text style={styles.mainText}>선택하신 점포
+          </Text>
+          <Text style={styles.mainText}>{route.params.storeName}
+          </Text>
+          <Text style={styles.subText}>서울시 서대문구 신촌역로 44
+          </Text>
+          <Text style={styles.mainText}>에 근무자 등록을 요청하시겠습니까?.
           </Text>
 
+
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={()=> navigation.push('MyPageMain')}>
-              <Text style={styles.btnText}>확인</Text>
+            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={()=>navigation.push('SelectComplete',{isStore:false})}>
+              <Text style={styles.btnText}>근무 요청</Text>
+            </Pressable>
+            <Pressable style={[purpleBtn, { marginTop: 20 }]} onPress={()=>navigation.reset({routes: [{name: "Home", }]})}>
+              <Text style={styles.btnText}>취소</Text>
             </Pressable>
           </View>
         </View>
@@ -58,11 +70,11 @@ const styles = StyleSheet.create({
     color: "#FFFFFF"
   },
   mainText: {
-    fontSize: 25, fontWeight: "bold", color: "#000000"
+    fontSize: 20, fontWeight: "bold", color: "#000000"
   },
     subText: {
       fontSize: 14,
-
+      color:"#000000"
     }
   , shadow: {
     elevation: 5,
@@ -91,4 +103,4 @@ const purpleBtn = StyleSheet.flatten([generalStyle.generalBtn, btnStyle.purple, 
 const circle =  StyleSheet.flatten([styles.round, styles.shadow]);
 
 
-export default SelectComplete;
+export default SelectWork;

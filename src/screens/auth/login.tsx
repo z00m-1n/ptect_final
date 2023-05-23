@@ -8,31 +8,81 @@ import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { inputStyle } from "../../style/input";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useRecoilValueLoadable } from "recoil";
-import { getLoginSelector } from "../../recoil/auth";
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from "recoil";
+import { getLoginSelector, passwordState, mobileState, authState, authSelector } from "../../recoil/auth";
+import axios from "axios";
+import { setCookie } from "../../cookie/_cookie";
+import { showToastWithGravity } from "../../toast/toast";
 
 
-const Login: React.FunctionComponent = ({navigation}:any) => {
+const Login = function({ navigation }: any) {
+  
+  const [mobile, setMobile] = useState("01011112222");
+  const [password, setPassword] = useState("qwer1234!");
+  const [auth, setAuth] = useRecoilState(authSelector);
 
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const loginLoadable = useRecoilValueLoadable(getLoginSelector);
-
-  function doLogin() {
+  //const loginLoadable = useRecoilValueLoadable(getLoginSelector);
+  /*  function doLogin() {
 
     switch (loginLoadable.state) {
       case "hasValue":
-          if (loginLoadable.contents.status == "success")
-          {
-            navigation.push("InitialLogin");
-          }
+        const phone = loginLoadable.contents.phone;
+        const name = loginLoadable.contents.name;
+        const role = loginLoadable.contents.role;
+        const token = loginLoadable.contents.token;
+        setAuth({phone,name,role,token});
+        if (role == "GUEST")
+        {
+          navigation.push("InitialLogin");
+        }
+        else
+        {
+          navigation.push("Home");
+        }
+
+        console.log("auth:"+ auth.phone);
       case "loading":
 
       case "hasError":
+        //console.log(loginLoadable.errorOrThrow())
+    }
+  }*/
 
+  async function doLogin() {
+    try {
+      const params = JSON.stringify({
+        "phone": mobile,
+        "password": password
+      });
+      const response = await axios.post(
+        Constant.baseUrl + "/login/ptect", params, {
+          "headers": {
+            "content-type": "application/json"
+          }
+        }
+      );
+      console.log(response.data);
+      if (response.status == 200) {
+
+        setCookie("token", response.data.token);
+        setCookie("phone", response.data.phone);
+        setCookie("name", response.data.name);
+        setAuth(response.data);
+        const role = response.data.role;
+        if (role == "GUEST") {
+          //showToastWithGravity("created");
+          navigation.push("InitialLogin");
+        } else {
+          navigation.push("Home");
+        }
+
+      } else {
+        showToastWithGravity("오류 발생");
+      }
+    } catch (e) {
+      showToastWithGravity("오류 발생");
     }
   }
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,7 +99,7 @@ const Login: React.FunctionComponent = ({navigation}:any) => {
           </TextInput>
         </View>
         <View style={{ marginTop: 20, paddingHorizontal: Constant.paddingHorizontal }}>
-          <TextInput onChangeText={newText => setPassword(newText)}
+          <TextInput secureTextEntry={true} onChangeText={newText => setPassword(newText)}
                      defaultValue={password} style={[grey, { marginTop: 0 }]} placeholder="비밀번호 입력"
                      placeholderTextColor="#FFFFFF">
 

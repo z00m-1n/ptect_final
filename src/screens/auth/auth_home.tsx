@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import GeneralStatusBar from "../../components/general_status_bar";
 import messaging from "@react-native-firebase/messaging";
@@ -6,6 +6,9 @@ import notifee from "@notifee/react-native";
 
 
 import MainLogo from "@images/main.png";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import SelectOnPush from "../push/select_on_push";
 const AuthHome: React.FunctionComponent = ({ navigation }: any) => {
 
   const [token, setToken] = useState('');
@@ -15,6 +18,15 @@ const AuthHome: React.FunctionComponent = ({ navigation }: any) => {
     setToken(fcmToken);
 
   }
+  messaging().onNotificationOpenedApp((msg)=>{
+    console.log("onNotificationOpenedApp");
+    //const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    navigation.push('SelectOnPush',{"title":msg.notification!.title,"body":msg.notification!.body});
+  })
+  useEffect(()=>{
+
+
+  },[])
   async function onDisplayNotification() {
     // Request permissions (required for iOS)
     await notifee.requestPermission()

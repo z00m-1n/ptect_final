@@ -39,7 +39,7 @@ const HistoryDetail: React.FunctionComponent = ({navigation}:any) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 식별 번호</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: 신고 식별 번호 (연월일시분초)</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>: 202305201422</Text>
               </View>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -47,7 +47,7 @@ const HistoryDetail: React.FunctionComponent = ({navigation}:any) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 날짜</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: 신고 날짜 (연월일)</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>: 2023년 05월 20일</Text>
               </View>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -55,7 +55,7 @@ const HistoryDetail: React.FunctionComponent = ({navigation}:any) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 유형</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: 신고 유형 (자동수종)</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>: 자동신고</Text>
               </View>
             </View>
 
@@ -79,7 +79,7 @@ const HistoryDetail: React.FunctionComponent = ({navigation}:any) => {
                    source={testImage} />
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, {marginTop:40}]} onPress={()=> navigation.push('MyPageMain')}>
+            <Pressable style={[purpleBtn, {marginTop:40}]} onPress={()=> navigation.push('Home')}>
               <Text style={styles.btnText}>확인</Text>
             </Pressable>
           </View>

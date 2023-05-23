@@ -10,24 +10,29 @@ import {
   TextInput,
   View
 } from "react-native";
-import StatusBarView from "../../../components/status_bar_view";
-import BackArrowTitle from "../../../components/backarrow_title";
-import constant from "../../../global/constant";
-import { Screens } from "../../../navigation/navigator";
-import { generalStyle } from "../../../style/general";
-import { inputStyle } from "../../../style/input";
-import { btnStyle } from "../../../style/button";
+import StatusBarView from "../../components/status_bar_view";
+import BackArrowTitle from "../../components/backarrow_title";
+import constant from "../../global/constant";
+import { Screens } from "../../navigation/navigator";
+import { generalStyle } from "../../style/general";
+import { inputStyle } from "../../style/input";
+import { btnStyle } from "../../style/button";
 import { SearchBar } from "@rneui/themed";
-import GeneralDivider from "../../../components/general_divider";
+import GeneralDivider from "../../components/general_divider";
+import navigator, { RootStackParamList } from "../../navigation/navigator";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 import Pay1 from "@images/pay1.png";
 import Pay2 from "@images/pay2.png";
-const SelectStore: React.FunctionComponent = ({navigation}:any) => {
+
+type SelectStoreProps = NativeStackScreenProps<RootStackParamList, "SelectStore">;
+const SelectStore = ({route, navigation}:SelectStoreProps) => {
 
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const { width, height } = Dimensions.get("screen");
+  console.log(route.params.storeName);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,7 +45,7 @@ const SelectStore: React.FunctionComponent = ({navigation}:any) => {
         }}>
           <Text style={styles.mainText}>선택하신 점포
           </Text>
-          <Text style={styles.mainText}>[CU 신촌문화 점]
+          <Text style={styles.mainText}>{route.params.storeName}
           </Text>
           <Text style={styles.subText}>서울시 서대문구 신촌역로 44
           </Text>
@@ -58,7 +63,10 @@ const SelectStore: React.FunctionComponent = ({navigation}:any) => {
         </View>
         <View style={{ flexDirection: "row", marginTop:30 }}>
           <View style={{ flex: 1, alignItems: "flex-end" }}>
-            <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('SelectComplete')}>
+          <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]}
+            onPress={
+              ()=>navigation.push('SelectComplete',{isStore:true})
+            }>
               <Image style={{ width: 60,
                 height: 60, resizeMode: 'stretch',}}
                      source={Pay1}
@@ -67,7 +75,10 @@ const SelectStore: React.FunctionComponent = ({navigation}:any) => {
             </Pressable>
           </View>
           <View style={{ flex: 1, alignItems: "flex-start" }}>
-            <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('SelectComplete')}>
+          <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]}
+                       onPress={
+                         ()=>navigation.push('SelectComplete',{isStore:true})
+                       }>
               <Image style={{ width: 60,
                 height: 60, resizeMode: 'stretch',}}
                      source={Pay2}
@@ -95,11 +106,12 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontSize: 22,
-    fontWeight: "500"
+    fontWeight: "500",
+    color:"#000000"
   },
   subText: {
     fontSize: 14,
-
+    color:"#000000"
   },
   btnText: {
     color: "#FFFFFF"

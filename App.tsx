@@ -8,6 +8,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import type {PropsWithChildren} from 'react';
 import {
+  LogBox,
   PermissionsAndroid,
   Platform,
   SafeAreaView,
@@ -29,7 +30,9 @@ import {
 import Navigator from "./src/navigation/navigator";
 import { RecoilRoot } from "recoil";
 import messaging from '@react-native-firebase/messaging';
+import {CookiesProvider} from 'react-cookie';
 import notifee, { EventType } from '@notifee/react-native';
+import { useNavigationContainerRef } from "@react-navigation/native";
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -86,6 +89,9 @@ function App(): JSX.Element {
     }
   });
   */
+  LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+  ]);
   useEffect(()=>{
     PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 
@@ -129,7 +135,9 @@ function App(): JSX.Element {
   return (
 
     <RecoilRoot>
-      <Navigator/>
+      <CookiesProvider>
+        <Navigator/>
+      </CookiesProvider>
     </RecoilRoot>
   );
 }

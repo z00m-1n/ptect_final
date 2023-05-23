@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -11,12 +11,18 @@ import { WithLocalSvg } from "react-native-svg";
 import UserSvg from "../svg/user_svg";
 import Constant from "../global/constant";
 import Historys from "./history/historys";
+import { useRecoilValue } from "recoil";
+import { authState } from "../recoil/auth";
 
 
 const Home: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
+  const auth = useRecoilValue(authState);
+  useEffect(()=>{
+
+  },[])
 
 
   return (

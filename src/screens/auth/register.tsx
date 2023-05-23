@@ -1,5 +1,5 @@
 import React, { Children, useState } from "react";
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, View } from "react-native";
 import GeneralStatusBar from "../../components/general_status_bar";
 import StatusBarView from "../../components/status_bar_view";
 import StatusBarScreen from "../../components/status_bar_screen";
@@ -9,6 +9,10 @@ import { btnStyle } from "../../style/button";
 import { generalStyle } from "../../style/general";
 import { inputStyle } from "../../style/input";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import axios from "axios";
+import { setCookie } from "../../cookie/_cookie";
+import { showToastWithGravity } from "../../toast/toast";
+import Login from "./login";
 
 export type ParentCompProps = {
   children: React.ReactNode;
@@ -20,6 +24,38 @@ const Register: React.FunctionComponent = ({navigation}:any) => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
+  async function doRegister() {
+    try {
+      const params = JSON.stringify({
+        "name":name,
+        "phone": mobile,
+        "password": password
+      });
+      const response = await axios.post(
+        Constant.baseUrl + "/signup/submit", params, {
+          "headers": {
+            "content-type": "application/json"
+          }
+        }
+      );
+      console.log(response.data);
+      if (response.status == 200) {
+
+        if (response.data.status == "CREATED")
+        {
+          navigation.push("Login");
+        }
+        else
+        {
+          showToastWithGravity(response.data.message);
+        }
+      } else {
+        showToastWithGravity("오류 발생");
+      }
+    } catch (e) {
+      showToastWithGravity("오류 발생");
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -64,7 +100,7 @@ const Register: React.FunctionComponent = ({navigation}:any) => {
           <View style={{ flexDirection: "row", paddingHorizontal: Constant.paddingHorizontal }}>
             <View style={{ flex: 7, paddingRight: 10 }}>
 
-              <TextInput onChangeText={newText => setPassword(newText)}
+              <TextInput secureTextEntry={true} onChangeText={newText => setPassword(newText)}
                          defaultValue={password} style={[grey, { marginTop: 20 }]} placeholder="비밀번호 입력" placeholderTextColor="#FFFFFF">
 
               </TextInput>
@@ -77,7 +113,7 @@ const Register: React.FunctionComponent = ({navigation}:any) => {
         <View style={{ paddingHorizontal: Constant.paddingHorizontal, alignItems: "center" }}>
 
           <View style={{ marginTop: 50 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={()=> navigation.push('AuthHome')}>
+            <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={doRegister}>
               <Text style={styles.btnText}>회원가입</Text>
             </Pressable>
           </View>

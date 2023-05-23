@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "871197565995",
-    "project_id": "ptect-25cbd",
-    "storage_bucket": "ptect-25cbd.appspot.com"
+    "project_number": "143296489947",
+    "project_id": "ptect-812f5",
+    "storage_bucket": "ptect-812f5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:871197565995:android:c9fb40ed32f0b81450766e",
+        "mobilesdk_app_id": "1:143296489947:android:143296489947",
         "android_client_info": {
           "package_name": "com.ptect"
         }
       },
       "oauth_client": [
         {
-          "client_id": "871197565995-a8jrb19153t5j0ciqupcroh4crl1ga78.apps.googleusercontent.com",
+          "client_id": "143296489947-oahaphmnak0rv3flmmb3j4o3j2m931an.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBtxbuSWv5bkN4PkQPyM8zqRMcvU5gyq0M"
+          "current_key": "AIzaSyBorzgkCvVJDugBD4anu1V0idpN8rtYlYM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "871197565995-a8jrb19153t5j0ciqupcroh4crl1ga78.apps.googleusercontent.com",
+              "client_id": "143296489947-oahaphmnak0rv3flmmb3j4o3j2m931an.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

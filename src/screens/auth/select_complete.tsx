@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { Children, PropsWithChildren, useState } from "react";
 import {
   Animated,
   Dimensions,
@@ -12,18 +12,23 @@ import {
   View
 } from "react-native";
 
-import StatusBarView from "../../../components/status_bar_view";
+import StatusBarView from "../../components/status_bar_view";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import BackArrowTitle from "../../../components/backarrow_title";
-import constant from "../../../global/constant";
-import { generalStyle } from "../../../style/general";
-import { btnStyle } from "../../../style/button";
+import BackArrowTitle, { Props } from "../../components/backarrow_title";
+import constant from "../../global/constant";
+import { generalStyle } from "../../style/general";
+import { btnStyle } from "../../style/button";
+import navigator, { RootStackParamList, Screens } from "../../navigation/navigator";
+import { ParamListBase, RouteProp, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
+import Home from "../home";
 
-const SelectWork: React.FunctionComponent = () => {
-
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
+type SelectCompleteProps = NativeStackScreenProps<RootStackParamList, "SelectComplete">;
+const SelectComplete= function({route,navigation}:SelectCompleteProps) {
+  const {isStore} = route.params;
   const { width, height } = Dimensions.get("screen");
+
+  const txt = isStore?'점포 등록이 완료되었습니다.':'근무 요청이 완료되었습니다.';
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,22 +38,14 @@ const SelectWork: React.FunctionComponent = () => {
         <View style={{ padding: constant.viewPadding, flex :1,  justifyContent: "center", alignItems: "center",
         }}>
 
-          <Text style={styles.mainText}>선택하신 점포
+          <Text style={styles.mainText}>{txt}
           </Text>
-          <Text style={styles.mainText}>[CU 신촌문화 점]
-          </Text>
-          <Text style={styles.subText}>서울시 서대문구 신촌역로 44
-          </Text>
-          <Text style={styles.mainText}>에 근무자 등록을 요청하시겠습니까?.
-          </Text>
-
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 40 }]}>
-              <Text style={styles.btnText}>근무 요청</Text>
-            </Pressable>
-            <Pressable style={[purpleBtn, { marginTop: 20 }]}>
-              <Text style={styles.btnText}>취소</Text>
+            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={
+              ()=>navigation.reset({routes: [{name: "Home", }]})
+            }>
+              <Text style={styles.btnText}>확인</Text>
             </Pressable>
           </View>
         </View>
@@ -67,7 +64,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF"
   },
   mainText: {
-    fontSize: 20, fontWeight: "bold", color: "#000000"
+    fontSize: 25, fontWeight: "bold", color: "#000000"
   },
     subText: {
       fontSize: 14,
@@ -100,4 +97,4 @@ const purpleBtn = StyleSheet.flatten([generalStyle.generalBtn, btnStyle.purple, 
 const circle =  StyleSheet.flatten([styles.round, styles.shadow]);
 
 
-export default SelectWork;
+export default SelectComplete;

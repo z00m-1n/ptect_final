@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { Children, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
@@ -26,12 +26,68 @@ import constant from "../../global/constant";
 import { Divider } from "@rneui/themed";
 
 import testImage from "../../../assets/images/test.png";
+import axios from "axios";
+import { setCookie } from "../../cookie/_cookie";
+import { showToastWithGravity } from "../../toast/toast";
+import { authSelector, authState } from "../../recoil/auth";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const Report: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const { width, height } = Dimensions.get("screen");
+  const auth = useRecoilValue(authSelector);
+
+  const MINUTES_IN_MS = 10 * 1000;
+  const INTERVAL = 10;
+  const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
+
+  //const minutes = String(Math.floor(((timeLeft / (1000 * 60)) % 60) % 60)).padStart(2, '0');
+  const second = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0');
+  const milliSecond = String(Math.floor(timeLeft/10)).padStart(4, '0');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - INTERVAL);
+    }, INTERVAL);
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      doReport();
+      console.log('타이머가 종료되었습니다.');
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timeLeft]);
+
+  async function doReport() {
+    try {
+
+      const response = await axios.post(
+        Constant.baseUrl + "/test/report", {
+          "headers": {
+            "content-type": "application/json",
+            "Authorization" : "Bearer " + auth.token
+          }
+        }
+      );
+
+      if (response.status == 200) {
+
+        navigation.push('ReportComplete');
+
+      } else {
+        navigation.push('ReportComplete');
+        showToastWithGravity("오류 발생");
+      }
+    } catch (e) {
+      navigation.push('ReportComplete');
+      showToastWithGravity("오류 발생");
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,7 +101,7 @@ const Report: React.FunctionComponent = ({navigation}:any) => {
               underlayColor = '#ccc'
               onPress = { ()=>{} }
             >
-              <Text style={{fontSize:45, fontWeight:'bold', color:'#4B0082'}}>0:00</Text>
+              <Text style={{fontSize:45, fontWeight:'bold', color:'#4B0082'}}>{second.padStart(2,"0")} : {milliSecond.substring(2,4)}</Text>
             </TouchableHighlight>
           </View>
           <View style={{
@@ -64,10 +120,10 @@ const Report: React.FunctionComponent = ({navigation}:any) => {
 
 
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={()=> navigation.push('ReportComplete')}>
+            <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={doReport}>
               <Text style={styles.btnText}>신고 접수</Text>
             </Pressable>
-            <Pressable style={[purpleBtn, { marginTop: 10 }]} onPress={()=> navigation.push('Home')}>
+            <Pressable style={[purpleBtn, { marginTop: 10 }]} onPress={()=>navigation.pop()} >
               <Text style={styles.btnText}>신고 취소</Text>
             </Pressable>
           </View>

@@ -13,6 +13,7 @@ import Constant from "../global/constant";
 import Historys from "./history/historys";
 import { useRecoilValue } from "recoil";
 import { authState } from "../recoil/auth";
+import Report from "./report/report";
 
 
 const Home: React.FunctionComponent = ({navigation}:any) => {
@@ -51,7 +52,7 @@ const Home: React.FunctionComponent = ({navigation}:any) => {
             </View>
             <View style={{flexDirection : 'row', flex :1, paddingHorizontal : Constant.paddingHorizontal, marginTop : 10 }}>
               <View style={{ flex: 5, alignSelf: 'stretch', paddingRight : 5 }}>
-                <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Historys')}>
+                <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Histories')}>
                   <Text style={styles.btnText}>신고 내역 조회</Text>
                 </Pressable>
               </View>

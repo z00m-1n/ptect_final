@@ -29,8 +29,6 @@ import Pay2 from "@images/pay2.png";
 type SelectStoreProps = NativeStackScreenProps<RootStackParamList, "SelectStore">;
 const SelectStore = ({route, navigation}:SelectStoreProps) => {
 
-  const [mobile, setMobile] = useState('');
-  const [password, setPassword] = useState('');
   const { width, height } = Dimensions.get("screen");
   console.log(route.params.storeName);
 

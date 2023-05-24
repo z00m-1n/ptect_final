@@ -44,7 +44,7 @@ const ReportComplete: React.FunctionComponent = ({navigation}:any) => {
           <Text style={styles.mainText}>신고 접수가 완료되었습니다.
           </Text>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 20 }]} onPress={()=> navigation.push('Home')}>
+            <Pressable style={[purpleBtn, { marginTop: 20 }]} onPress={()=>navigation.reset({routes: [{name: "Home", }]})}>
               <Text style={styles.btnText}>확인</Text>
             </Pressable>
 

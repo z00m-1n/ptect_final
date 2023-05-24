@@ -16,11 +16,67 @@ import { Divider } from "@rneui/themed";
 
 import testImage from "../../../assets/images/test.png";
 import GeneralDivider from "../../components/general_divider";
+import axios from "axios";
+import { showToastWithGravity } from "../../toast/toast";
+import { useRecoilValue } from "recoil";
+import { authSelector } from "../../recoil/auth";
 
 const Notification: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
+  const auth = useRecoilValue(authSelector);
+  async function notifySound() {
+    try {
+
+      const response = await axios.post(
+        Constant.baseUrl + "/test/sound", {
+          "headers": {
+            "content-type": "application/json",
+            "Authorization" : "Bearer " + auth.token
+          }
+        }
+      );
+
+      if (response.status == 200) {
+
+
+
+      } else {
+
+        showToastWithGravity("오류 발생");
+      }
+    } catch (e) {
+
+      showToastWithGravity("오류 발생");
+    }
+  }
+
+  async function notifySOS() {
+    try {
+
+      const response = await axios.post(
+        Constant.baseUrl + "/test/report", {
+          "headers": {
+            "content-type": "application/json",
+            "Authorization" : "Bearer " + auth.token
+          }
+        }
+      );
+
+      if (response.status == 200) {
+
+
+
+      } else {
+
+        showToastWithGravity("오류 발생");
+      }
+    } catch (e) {
+
+      showToastWithGravity("오류 발생");
+    }
+  }
 
 
   return (
@@ -42,12 +98,12 @@ const Notification: React.FunctionComponent = ({navigation}:any) => {
             </Text>
           </View>
           <View style={{  alignSelf: 'stretch', marginHorizontal:40, marginTop:40 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Home')}>
+            <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={notifySound}>
               <Text style={styles.btnText}>"범죄상황감지" 소리 출력</Text>
             </Pressable>
           </View>
           <View style={{  alignSelf: 'stretch', marginHorizontal:40, marginTop:20 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={()=> navigation.push('Home')}>
+            <Pressable style={[purpleBtn, { marginTop: 0,  }]} onPress={notifySOS}>
               <Text style={styles.btnText}>"SOS" 전광판 출력</Text>
             </Pressable>
           </View>

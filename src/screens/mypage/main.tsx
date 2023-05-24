@@ -33,7 +33,7 @@ const MyPageMain: React.FunctionComponent = ({navigation}:any) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBarView />
-      <BackArrowTitle title={"신고 내역 조회"}></BackArrowTitle>
+      <BackArrowTitle title={"마이 페이지"}></BackArrowTitle>
       <KeyboardAwareScrollView>
         <View style={{ padding: constant.viewPadding }}>
 
@@ -69,12 +69,6 @@ const MyPageMain: React.FunctionComponent = ({navigation}:any) => {
             </View>
           </View>
 
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Pressable style={[purpleBtn, { marginTop: 20 }]} onPress={()=> navigation.push('MyPageInfo')}>
-              <Text style={styles.btnText}>정보 변경</Text>
-            </Pressable>
-          </View>
-
 
           <GeneralDivider />
           <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -83,12 +77,12 @@ const MyPageMain: React.FunctionComponent = ({navigation}:any) => {
           </View>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 1, alignItems: "flex-end" }}>
-              <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('SelectStore')}>
+              <Pressable style={[generalStyle.simpleGreyArea, { justifyContent: "center", alignItems: "center", marginHorizontal:10 }]} onPress={()=> navigation.push('MyPageInfo')}>
                 <Image style={{ width: 60,
                   height: 60, resizeMode: 'stretch',}}
                   source={RegisterStore}
                 ></Image>
-                <Text style={{fontSize:15, color:'#000000', fontWeight:'500', marginTop:10}}>점포 등록</Text>
+                <Text style={{fontSize:15, color:'#000000', fontWeight:'500', marginTop:10}}>정보 변경</Text>
               </Pressable>
             </View>
             <View style={{ flex: 1, alignItems: "flex-start" }}>

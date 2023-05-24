@@ -90,7 +90,8 @@ const MyPageInfo: React.FunctionComponent = ({navigation}:any) => {
             </View>
           </View>
           <View style={{ marginTop: 50 }}>
-            <Pressable style={[purpleBtn, { marginTop: 0 }]} onPress={()=> navigation.push('MyPageMain')}>
+            <Pressable style={[purpleBtn, { marginTop: 0 }]}
+            onPress={()=>navigation.reset({routes: [{name: "Home", }]})}>
               <Text style={styles.btnText}>정보 수정</Text>
             </Pressable>
           </View>

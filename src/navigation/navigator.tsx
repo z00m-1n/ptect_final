@@ -8,6 +8,11 @@ import InitialLogin from "../screens/auth/initial_login";
 import Home from "../screens/home";
 import HistoryList from "../screens/history/historys";
 import HistoryDetail from "../screens/history/history_detail";
+import HistoryDetailOne from "../screens/history/history_detail_one";
+import HistoryDetailTwo from "../screens/history/history_datail_two";
+import HistoryDetailThree from "../screens/history/history_detail_three";
+import HistoryDetailFour from "../screens/history/history_detail_four";
+import HistoryDetailFive from "../screens/history/history_detail_five";
 import Report from "../screens/report/report";
 import ReportComplete from "../screens/report/report_complete";
 import Notification from "../screens/notification/notification";
@@ -37,6 +42,9 @@ export type RootStackParamList = {
   RegisterStore : {onClick: (name:string,address:string)=>void}
   SelectStore : {storeName:string}
   SelectWork : {storeName:string}
+  HistoryDetail : {historyType:String,
+    historyPk : String,
+    historyDate : String}
 
 };
 const Stack = createNativeStackNavigator();
@@ -47,8 +55,13 @@ export enum Screens {
   Login = 'Login',
   InitialLogin = 'InitialLogin',
   Home = 'Home',
-  Historys = 'Historys',
+  Histories = 'Histories',
   HistoryDetail = 'HistoryDetail',
+  HistoryDetailOne = 'HistoryDetailOne',
+  HistoryDetailTwo = 'HistoryDetailTwo',
+  HistoryDetailThree = 'HistoryDetailThree',
+  HistoryDetailFour = 'HistoryDetailFour',
+  HistoryDetailFive = 'HistoryDetailFive',
   Report = 'Report',
   ReportComplete = 'ReportComplete',
   Notification = 'Notification',
@@ -96,10 +109,25 @@ const Navigator: React.FunctionComponent = () => {
         }} name={Screens.Home} component={Home} />
         <Stack.Screen options={{
           headerShown: false,
-        }} name={Screens.Historys} component={Historys} />
-        <Stack.Screen options={{
+        }} name={Screens.Histories} component={Historys} />
+        <ParamStack.Screen options={{
           headerShown: false,
         }} name={Screens.HistoryDetail} component={HistoryDetail} />
+        <Stack.Screen options={{
+          headerShown: false,
+        }} name={Screens.HistoryDetailOne} component={HistoryDetailOne} />
+        <Stack.Screen options={{
+          headerShown: false,
+        }} name={Screens.HistoryDetailTwo} component={HistoryDetailTwo} />
+        <Stack.Screen options={{
+          headerShown: false,
+        }} name={Screens.HistoryDetailThree} component={HistoryDetailThree} />
+        <Stack.Screen options={{
+          headerShown: false,
+        }} name={Screens.HistoryDetailFour} component={HistoryDetailFour} />
+        <Stack.Screen options={{
+          headerShown: false,
+        }} name={Screens.HistoryDetailFive} component={HistoryDetailFive} />
         <Stack.Screen options={{
           headerShown: false,
         }} name={Screens.Report} component={Report} />

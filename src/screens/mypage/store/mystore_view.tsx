@@ -6,13 +6,13 @@ import FlatList = Animated.FlatList;
 import { generalStyle } from "../../../style/general";
 import { inputStyle } from "../../../style/input";
 import { btnStyle } from "../../../style/button";
-import GeneralList, { ListItems } from "../../../components/general_list";
+import GeneralList, { ListItem } from "../../../components/general_list";
 import constant from "../../../global/constant";
 import { Divider } from "@rneui/themed";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 
-const MyStoreView: React.FunctionComponent = () => {
+const MyStoreView: React.FunctionComponent = ({navigation}:any) => {
 
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +53,7 @@ const MyStoreView: React.FunctionComponent = () => {
               <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 유형</Text>
             </View>
             <View style={{ flex: 7 }}>
-              <Text style={{ fontSize: 17, color: "#000000" }}>: 신고 유형 (자동수종)</Text>
+              <Text style={{ fontSize: 17, color: "#000000" }}>: 신고 유형 (자동수동)</Text>
             </View>
           </View>
 
@@ -83,7 +83,10 @@ const MyStoreView: React.FunctionComponent = () => {
         </View>
         <Divider orientation="horizontal" width={1} color={"#000000"} style={{ marginTop: 5 }} />
         <View style={{ flex:1, marginTop:30, padding : 10, backgroundColor : '#E6E6E6', borderRadius : 10}}>
-          <GeneralList items={userList}/>
+          <Pressable onPress={()=> navigation.push('MyEmployeeView')}>
+            <GeneralList items={userList}/>
+          </Pressable>
+
         </View>
 
 

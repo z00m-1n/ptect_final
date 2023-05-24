@@ -16,13 +16,12 @@ import { Divider } from "@rneui/themed";
 
 import testImage from "../../../assets/images/history_ex.png";
 import GeneralDivider from "../../components/general_divider";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../navigation/navigator";
 
-type HistoryDetailProps = NativeStackScreenProps<RootStackParamList, "HistoryDetail">;
-const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
+const HistoryDetailFour: React.FunctionComponent = ({navigation}:any) => {
 
-  console.log("props" + route.params);
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,10 +36,10 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
             <View style={{ flexDirection: "row" }}>
 
               <View style={{ flex: 3 }}>
-                <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>{': ' + route.params.historyPk}</Text>
+                <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 식별 번호</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: 202305201422</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>: 202304061322</Text>
               </View>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -48,7 +47,7 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 날짜</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>{': ' + route.params.historyDate}</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>: 2023년 04월 06일</Text>
               </View>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -56,7 +55,7 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 유형</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: {': ' + route.params.historyType}</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>: 자동신고</Text>
               </View>
             </View>
 
@@ -102,4 +101,4 @@ const styles = StyleSheet.create({
 
 });
 const purpleBtn = StyleSheet.flatten([generalStyle.generalBtn, btnStyle.purple, generalStyle.btnSmallSize]);
-export default HistoryDetail;
+export default HistoryDetailFour;

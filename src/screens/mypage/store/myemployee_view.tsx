@@ -116,7 +116,8 @@ const MyEmployeeView: React.FunctionComponent = ({ navigation }: any) => {
           </View>
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <Pressable style={[smallPurpleBtn, { marginTop: 40 }]} onPress={()=> navigation.push('MyPageMain')} >
+          <Pressable style={[smallPurpleBtn, { marginTop: 40 }]}
+          onPress={()=>navigation.reset({routes: [{name: "Home", }]})}>
             <Text style={styles.btnText}>확인</Text>
           </Pressable>
         </View>

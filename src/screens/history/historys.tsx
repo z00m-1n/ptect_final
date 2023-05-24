@@ -19,8 +19,8 @@ import HistoryDetail from "./history_detail";
 const Historys: React.FunctionComponent = ({navigation}:any) => {
 
   const historyList =
-    [{title:"[자동신고] GS25 신촌기차역점",content1:"2022.02.06.",content2:"202202061222","pk":1, type:"자동"},
-    {title:"[수동신고] GS25 서울역점",content1:"2022.02.07.",content2:"202202071222","pk":2, type:"수동"},
+    [{title:"[자동신고] GS25 신촌기차역점",content1:"2023.05.20.",content2:"202305201422","pk":1, type:"자동"},
+    {title:"[자동신고] GS25 신촌기차역점",content1:"2023.05.07.",content2:"202305071218","pk":2, type:"자동"},
   ]
 
     const handleItemPress = (itemIndex: any) => {

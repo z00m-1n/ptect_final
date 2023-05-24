@@ -15,6 +15,8 @@ import constant from "../../global/constant";
 import { Divider } from "@rneui/themed";
 
 import testImage from "../../../assets/images/history_ex.png";
+import historyImg1 from "../../../assets/images/history_ex_202305071218.png";
+import historyImg2 from "../../../assets/images/history_ex_202305201422.png";
 import GeneralDivider from "../../components/general_divider";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/navigator";
@@ -23,6 +25,17 @@ type HistoryDetailProps = NativeStackScreenProps<RootStackParamList, "HistoryDet
 const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
 
   console.log("props" + route.params);
+
+  const getImageByHistoryPk = (historyPk:any) => {
+    switch (historyPk) {
+      case "202305071218":
+        return historyImg1;
+      case "202305201422":
+        return historyImg2;
+      default:
+        return null;
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,10 +50,10 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
             <View style={{ flexDirection: "row" }}>
 
               <View style={{ flex: 3 }}>
-                <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>{': ' + route.params.historyPk}</Text>
+                <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 번호</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: 202305201422</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>{': ' + route.params.historyPk}</Text>
               </View>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -56,7 +69,7 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 유형</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>: {': ' + route.params.historyType}</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>{': ' + route.params.historyType + route.params.historyPk}</Text>
               </View>
             </View>
 
@@ -77,7 +90,7 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
               width: "100%", height: undefined,
               aspectRatio: 1
             }}
-                   source={testImage} />
+                   source={getImageByHistoryPk(route.params.historyPk)} />
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Pressable style={[purpleBtn, {marginTop:40}]} onPress={()=> navigation.push('Home')}>

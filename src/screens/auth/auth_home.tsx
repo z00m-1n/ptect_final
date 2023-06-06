@@ -64,14 +64,6 @@ const AuthHome: React.FunctionComponent = ({ navigation }: any) => {
                    onPress={()=> navigation.push('Login')}>
           <Text style={styles.btnText}>로그인</Text>
         </Pressable>
-        <Pressable style={[styles.normalBtn, {marginTop:20}]}
-                   onPress={getFcmToken}>
-          <Text style={styles.btnText}>토큰</Text>
-        </Pressable>
-        <Pressable style={[styles.normalBtn, {marginTop:20}]}
-                   onPress={onDisplayNotification}>
-          <Text style={styles.btnText}>notifee</Text>
-        </Pressable>
 
       </View>
 

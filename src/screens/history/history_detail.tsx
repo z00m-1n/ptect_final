@@ -69,7 +69,7 @@ const HistoryDetail= ({route, navigation}:HistoryDetailProps) => {
                 <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 유형</Text>
               </View>
               <View style={{ flex: 7 }}>
-                <Text style={{ fontSize: 17, color: "#000000" }}>{': ' + route.params.historyType + route.params.historyPk}</Text>
+                <Text style={{ fontSize: 17, color: "#000000" }}>{': ' + route.params.historyType}</Text>
               </View>
             </View>
 

@@ -61,14 +61,7 @@ const MyEmployeeView: React.FunctionComponent = ({ navigation }: any) => {
               <Text style={{ fontSize: 17, color: "#000000" }}>: 서울시 서대문구 신촌역로 44</Text>
             </View>
           </View>
-          <View style={{ flexDirection: "row" }}>
-            <View style={{ flex: 3 }}>
-              <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>신고 유형</Text>
-            </View>
-            <View style={{ flex: 7 }}>
-              <Text style={{ fontSize: 17, color: "#000000" }}>: 신고 유형 (자동수종)</Text>
-            </View>
-          </View>
+          
 
 
         </View>
@@ -82,7 +75,11 @@ const MyEmployeeView: React.FunctionComponent = ({ navigation }: any) => {
               <UserSvg />
             </TouchableOpacity>
           </View>
+
+          
           <View style={{ flex: 7, paddingHorizontal: 10, justifyContent:'center'}}>
+
+            
             <View style={generalStyle.greyArea}>
               <View style={{ flexDirection: "row" }}>
 
@@ -98,7 +95,7 @@ const MyEmployeeView: React.FunctionComponent = ({ navigation }: any) => {
                   <Text style={{ fontSize: 17, fontWeight: "bold", color: "#000000" }}>상태</Text>
                 </View>
                 <View style={{ flex: 7 }}>
-                  <Text style={{ fontSize: 17, color: "#000000" }}>: 근무신청</Text>
+                  <Text style={{ fontSize: 17, color: "#000000" }}>: 근무승인</Text>
                 </View>
               </View>
               <View style={{ flexDirection: "row" }}>
@@ -109,9 +106,6 @@ const MyEmployeeView: React.FunctionComponent = ({ navigation }: any) => {
                   <Text style={{ fontSize: 17, color: "#000000" }}>: 01011115555</Text>
                 </View>
               </View>
-
-
-
             </View>
           </View>
         </View>

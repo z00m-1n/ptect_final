@@ -29,18 +29,18 @@ const Notification: React.FunctionComponent = ({navigation}:any) => {
   async function notifySound() {
     try {
 
-      const response = await axios.post(
+      const response = await axios.get(
         Constant.baseUrl + "/test/sound", {
           "headers": {
-            "content-type": "application/json",
-            "Authorization" : "Bearer " + auth.token
+            //"content-type": "application/json",
+            //"Authorization" : "Bearer " + auth.token
           }
         }
       );
 
       if (response.status == 200) {
 
-
+        navigation.reset({routes: [{name: "Home", }]});
 
       } else {
 
@@ -55,18 +55,18 @@ const Notification: React.FunctionComponent = ({navigation}:any) => {
   async function notifySOS() {
     try {
 
-      const response = await axios.post(
+      const response = await axios.get(
         Constant.baseUrl + "/test/report", {
           "headers": {
-            "content-type": "application/json",
-            "Authorization" : "Bearer " + auth.token
+            //"content-type": "application/json",
+            //"Authorization" : "Bearer " + auth.token
           }
         }
       );
 
       if (response.status == 200) {
 
-
+        navigation.reset({routes: [{name: "Home", }]});
 
       } else {
 

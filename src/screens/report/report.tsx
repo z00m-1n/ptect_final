@@ -39,7 +39,7 @@ const Report: React.FunctionComponent = ({navigation}:any) => {
   const { width, height } = Dimensions.get("screen");
   const auth = useRecoilValue(authSelector);
 
-  const MINUTES_IN_MS = 10 * 1000;
+  const MINUTES_IN_MS = 10 * 300;
   const INTERVAL = 10;
   const [timeLeft, setTimeLeft] = useState<number>(MINUTES_IN_MS);
 
@@ -66,11 +66,11 @@ const Report: React.FunctionComponent = ({navigation}:any) => {
   async function doReport() {
     try {
 
-      const response = await axios.post(
+      const response = await axios.get(
         Constant.baseUrl + "/test/report", {
           "headers": {
-            "content-type": "application/json",
-            "Authorization" : "Bearer " + auth.token
+            //"content-type": "application/json",
+            //"Authorization" : "Bearer " + auth.token
           }
         }
       );
@@ -114,7 +114,7 @@ const Report: React.FunctionComponent = ({navigation}:any) => {
             </Text>
             <Text style={styles.mainText}>신고를 접수하시겠습니까?
             </Text>
-            <Text style={styles.mainText}>10초 후 자동 접수됩니다.
+            <Text style={styles.mainText}>제한시간 후 자동 접수됩니다.
             </Text>
           </View>
 
@@ -123,7 +123,7 @@ const Report: React.FunctionComponent = ({navigation}:any) => {
             <Pressable style={[purpleBtn, { marginTop: 40 }]} onPress={doReport}>
               <Text style={styles.btnText}>신고 접수</Text>
             </Pressable>
-            <Pressable style={[purpleBtn, { marginTop: 10 }]} onPress={()=>navigation.pop()} >
+            <Pressable style={[purpleBtn, { marginTop: 10 }]} onPress={()=>navigation.reset({routes: [{name: "Home", }]})}>
               <Text style={styles.btnText}>신고 취소</Text>
             </Pressable>
           </View>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF"
   },
   mainText: {
-    fontSize: 25, fontWeight: "bold", color: "#000000"
+    fontSize: 20, fontWeight: "bold", color: "#000000"
   }
   , shadow: {
     elevation: 5,
